@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Calculator from './components/Calculator'
 import PesticideManager from './components/PesticideManager'
 import History from './components/History'
+import SprayHistory from './components/SprayHistory'
 
 function App() {
   const [activeTab, setActiveTab] = useState('calc')
@@ -45,19 +46,25 @@ function App() {
       </header>
 
       <div className="tabs">
-        <div 
+        <div
           className={`tab ${activeTab === 'calc' ? 'active' : ''}`}
           onClick={() => setActiveTab('calc')}
         >
           計算
         </div>
-        <div 
+        <div
           className={`tab ${activeTab === 'pesticides' ? 'active' : ''}`}
           onClick={() => setActiveTab('pesticides')}
         >
           農薬管理
         </div>
-        <div 
+        <div
+          className={`tab ${activeTab === 'spray_history' ? 'active' : ''}`}
+          onClick={() => setActiveTab('spray_history')}
+        >
+          散布履歴
+        </div>
+        <div
           className={`tab ${activeTab === 'history' ? 'active' : ''}`}
           onClick={() => setActiveTab('history')}
         >
@@ -71,6 +78,9 @@ function App() {
         )}
         {activeTab === 'pesticides' && (
           <PesticideManager pesticides={pesticides} setPesticides={setPesticides} />
+        )}
+        {activeTab === 'spray_history' && (
+          <SprayHistory />
         )}
         {activeTab === 'history' && (
           <History history={history} onClear={clearHistory} onDelete={deleteHistory} />
